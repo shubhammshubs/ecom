@@ -4,7 +4,7 @@ import 'Product.dart';
 final List<Product> ItemsList = [
   Product(
     id: 1,
-    name: 'Plump and Juicy Fresh Strawberries',
+    name: 'Plump and Juicy \nFresh Strawberries',
     price: '70.00',
     images: ['assets/images/1.png','assets/images/1.png','assets/images/1.png','assets/images/1.png',],
     description: '''
@@ -41,7 +41,7 @@ Feel free to customize this product description to match your brand's style and 
 
   Product(
     id: 2,
-    name: 'Citrus Burst Fresh Oranges',
+    name: 'Citrus Burst \nFresh Oranges',
     price: '30.00',
 
     images: ['assets/images/2.png','assets/images/2.png','assets/images/2.png','assets/images/2.png',],
@@ -77,7 +77,7 @@ Feel free to customize this product description to match your brand's style and 
 
   Product(
     id: 3,
-    name: 'Heavenly Delights Chocklet Cake',
+    name: 'Heavenly Delights \nChocklet Cake',
     price: '250.00',
 
     images: ['assets/images/3.png','assets/images/3.png','assets/images/3.png','assets/images/3.png',],
@@ -115,7 +115,7 @@ Feel free to adapt this product description to match your specific cake offering
 
   Product(
     id: 4,
-    name: 'Fiery Fresh Chili Peppers',
+    name: 'Fiery Fresh \nChili Peppers',
     price: '50.00',
 
     images: ['assets/images/4.png','assets/images/4.png','assets/images/4.png','assets/images/4.png',],
@@ -146,7 +146,7 @@ Note: The heat level of chili peppers can vary, and we provide a heat rating sca
   ),
 Product(
 id: 5,
-name: 'Fresh and Juicy Tomatoes',
+name: 'Fresh and Juicy \nTomatoes',
 price: '70.00',
 
 images: ['assets/images/5.png','assets/images/5.png','assets/images/5.png','assets/images/5.png',],
@@ -172,7 +172,7 @@ Make every meal a culinary delight with our Fresh and Juicy Tomatoes. Add them t
 Note: Due to the natural variation in size and weight of tomatoes, the actual weight of the product may vary slightly. '''),
   Product(
       id: 6,
-      name: 'Exquisite Spice Collection',
+      name: 'Exquisite Spice \nCollection',
       price: '40.00',
 
       images: ['assets/images/6.png','assets/images/6.png','assets/images/6.png','assets/images/6.png',],
@@ -198,7 +198,7 @@ Expertly Curated: Our spice experts have meticulously selected each spice in thi
 Embark on a culinary journey with our Exquisite Spice Collection and unlock a world of flavors that will inspire your cooking and delight your taste buds. Elevate your dishes to new heights of deliciousness! '''),
   Product(
       id: 7,
-      name: 'Prime Cuts: Premium Meat Selection',
+      name: 'Premium Meat \nSelection',
       price: '100.00',
 
       images: ['assets/images/7.png','assets/images/7.png','assets/images/7.png','assets/images/7.png',],

@@ -1,12 +1,20 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import '../Classes/CartItem_Class.dart';
+import '../screens/FavoritesScreen.dart';
 import '../screens/my_cart.dart';
 import '../widgets/popular_items_slider.dart';
 import 'Product.dart'; // Import the Product class
 import 'package:expandable/expandable.dart';
+import 'package:ecom/screens/my_cart.dart'; // Make sure to import the mycart() screen
+
+
+final Cart cart = Cart();
+List<Product> favoriteItems = [];
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
+
 
   // Constructor to receive the product object
   ProductDetailsPage({required this.product});
@@ -44,6 +52,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: GlobalKey<ScaffoldState>(), // Add a GlobalKey for the Scaffold
       appBar: AppBar(
         centerTitle: true,
         title: Text('Product Details'),
@@ -183,7 +192,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 SizedBox(height: 6,),
                 Container(
-                  height: 200.0, // Set a suitable height
+                  height: 250.0, // Set a suitable height
                   child: PopularItemsSlider(),
                 ),
               ],
@@ -199,13 +208,51 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           children: [
             ElevatedButton(
               onPressed: () {
-                mycart();
+                // cart.addItem(widget.product, selectedQuantity);
+                // Assuming you have a selectedProduct and selectedQuantity
+                cart.addItem(widget.product, selectedQuantity, widget.product.images[0]); // You can choose the desired image index
+                // (cartItem as Product);
+
+                // Show a SnackBar to inform the user that the item has been added
+                final snackBar = SnackBar(content: Text('Item has been added to the cart'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                Navigator.pop(context);
               },
               child: Text('Add to Cart'),
             ),
+
+            // ElevatedButton(
+            //   onPressed: () {
+            //     saveForLater();
+            //   },
+            //   child: AnimatedDefaultTextStyle(
+            //     duration: const Duration(milliseconds: 200),
+            //     style: TextStyle(
+            //       fontWeight: isSavedForLater ? FontWeight.bold : FontWeight.normal,
+            //     ),
+            //     child: Text('Save for Later'),
+            //   ),
+            // ),
             ElevatedButton(
               onPressed: () {
-                saveForLater();
+                // setState(() {
+                  // Add the current product to the favoriteItems list
+                  favoriteItems.add(widget.product);
+                // });
+
+                // Navigate to the Favorites page and pass the list of favorite items
+                //  Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => FavoritesScreen(favoriteItems: favoriteItems),
+                //   ),
+                // );
+                final snackBar = SnackBar(content: Text('Item has been added to the Favorites'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  Navigator.pop(context);
+
               },
               child: AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 200),
@@ -215,9 +262,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 child: Text('Save for Later'),
               ),
             ),
+
           ],
         ),
       ),
     );
   }
 }
+
+
+

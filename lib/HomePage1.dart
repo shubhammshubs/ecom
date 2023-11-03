@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'Inside_Pages/product_details_pg_1.dart';
+
 
 class HomePage extends StatefulWidget {
 
@@ -31,8 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    const mycart(),
-    const FavoritesScreen(),
+     mycart(cart: cart,),
+     FavoritesScreen(favoriteItems: favoriteItems,),
     const OrdersScreen(),
     const Profilescreen(),
   ];

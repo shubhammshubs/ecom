@@ -53,19 +53,84 @@ class PopularItemsSlider extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: [
-                Image.asset(
-                  imageData['imagePath'], // Load the correct image path
-                  width: 100.0,
-                  height: 100.0,
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  product.name, // Display the product name from the Product object
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  width: 150,
+                  height: 200,
+                  decoration:  BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black45,
+                          blurRadius: 10,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(
+                        color: Colors.black26,
+                        width: 2.0,
+                      )
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 130.0,
+                        // height: 150.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black12, // Set the border color
+                            width: 1.0,          // Set the border width
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          // Adjust border radius as needed
+                        ),
+                        child: Image.asset(
+                          imageData['imagePath'], // Load the correct image path
+                          width: 100.0,
+                          height: 100.0,
+                        ),
+                      ),
+                      // Image.asset(
+                      //   imageData['imagePath'], // Load the correct image path
+                      //   width: 100.0,
+                      //   height: 100.0,
+                      // ),
+                      SizedBox(height: 8.0),
+                      Text(product.price,
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                      Text(
+                        product.name, // Display the product name from the Product object
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                // Image.asset(
+                //   imageData['imagePath'], // Load the correct image path
+                //   width: 100.0,
+                //   height: 100.0,
+                // ),
+                // SizedBox(height: 8.0),
+                // Text(
+                //   product.name, // Display the product name from the Product object
+                //   style: TextStyle(
+                //     fontSize: 16.0,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -74,3 +139,4 @@ class PopularItemsSlider extends StatelessWidget {
     );
   }
 }
+

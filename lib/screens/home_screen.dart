@@ -156,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 6,),
                 Container(
-                  height: 165.0, // Set a suitable height
+                  height: 250.0, // Set a suitable height
                   child: BestDealsSlider(),
                 ),
               ],
@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 6,),
                 Container(
-                  height: 200.0, // Set a suitable height
+                  height: 250.0, // Set a suitable height
                   child: PopularItemsSlider(),
                 ),
               ],
