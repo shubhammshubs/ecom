@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-     mycart(cart: cart,),
+    MyCart(cart: cart,),
      FavoritesScreen(favoriteItems: favoriteItems,),
     const OrdersScreen(),
     const Profilescreen(),

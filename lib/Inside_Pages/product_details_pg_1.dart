@@ -19,16 +19,23 @@ class ProductDetailsPage extends StatefulWidget {
   // Constructor to receive the product object
   ProductDetailsPage({required this.product});
 
+
+
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selectedQuantity = 1; // Initial quantity
+  double totalPrice = 0.0; // Initialize total price
+
+
 
   void incrementQuantity() {
     setState(() {
       selectedQuantity++;
+      updateTotalPrice();
+
     });
   }
 
@@ -36,11 +43,35 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     if (selectedQuantity > 1) {
       setState(() {
         selectedQuantity--;
+        updateTotalPrice();
+
       });
     }
   }
 
+  // Function to update the total price based on quantity
+  void updateTotalPrice() {
+    setState(() {
+
+      totalPrice = selectedQuantity * double.parse(widget.product.price.toString());
+    });
+  }
+
   bool isSavedForLater = false; // State to track whether saved for later
+// Define a custom filled heart icon
+  Icon _filledHeartIcon = Icon(
+    Icons.favorite,
+    color: Colors.red, // Set the filled color here
+  );
+
+// Define an empty heart icon
+  Icon _emptyHeartIcon = Icon(
+    Icons.favorite_border,
+    color: Colors.grey, // Set the empty color here
+  );
+
+// Use a boolean variable to track whether the item is saved for later or not
+//   bool isSavedForLater = false;
 
   // Function to save for later
   void saveForLater() {
@@ -52,11 +83,40 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: GlobalKey<ScaffoldState>(), // Add a GlobalKey for the Scaffold
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        centerTitle: true,
-        title: Text('Product Details'),
+          title: Text('Product Details',
+          style: TextStyle(color: Colors.black),),
+          centerTitle: true,
+      backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          icon:   const Icon(Icons.arrow_back,color: Colors.black,),
+        ),
+        actions: <Widget>[
+// In your build method, use a ternary operator to display the appropriate icon based on the state
+          IconButton(
+            onPressed: () {
+              setState(() {
+                favoriteItems.add(widget.product);
+                final snackBar = SnackBar(content: Text('Item has been added to the Favorites'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                // Navigator.pop(context);
+
+
+                isSavedForLater = !isSavedForLater; // Toggle the saved for later state
+              });
+            },
+            icon: isSavedForLater ? _filledHeartIcon : _emptyHeartIcon,
+          )
+        ],
       ),
+      key: GlobalKey<ScaffoldState>(), // Add a GlobalKey for the Scaffold
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +124,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             // Product Images Carousel
             Container(
               height: 300.0, // Adjust the height as needed
-              color: Colors.white24, // Replace with the off-white color you prefer
+              color: Colors.grey[100], // Replace with the off-white color you prefer
               child: PageView.builder(
                 itemCount: widget.product.images.length,
                 itemBuilder: (context, index) {
@@ -206,6 +266,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Text(
+              'Rs. ${totalPrice.toStringAsFixed(2)}', // Display the total price with two decimal places
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
             ElevatedButton(
               onPressed: () {
                 // cart.addItem(widget.product, selectedQuantity);
@@ -234,34 +302,36 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             //     child: Text('Save for Later'),
             //   ),
             // ),
-            ElevatedButton(
-              onPressed: () {
-                // setState(() {
-                  // Add the current product to the favoriteItems list
-                  favoriteItems.add(widget.product);
-                // });
 
-                // Navigate to the Favorites page and pass the list of favorite items
-                //  Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => FavoritesScreen(favoriteItems: favoriteItems),
-                //   ),
-                // );
-                final snackBar = SnackBar(content: Text('Item has been added to the Favorites'));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                  Navigator.pop(context);
-
-              },
-              child: AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 200),
-                style: TextStyle(
-                  fontWeight: isSavedForLater ? FontWeight.bold : FontWeight.normal,
-                ),
-                child: Text('Save for Later'),
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     // setState(() {
+            //       // Add the current product to the favoriteItems list
+            //       favoriteItems.add(widget.product);
+            //     // });
+            //
+            //     // Navigate to the Favorites page and pass the list of favorite items
+            //     //  Navigator.push(
+            //     //   context,
+            //     //   MaterialPageRoute(
+            //     //     builder: (context) => FavoritesScreen(favoriteItems: favoriteItems),
+            //     //   ),
+            //     // );
+            //     final snackBar = SnackBar(content: Text('Item has been added to the Favorites'));
+            //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            //
+            //       Navigator.pop(context);
+            //
+            //   },
+            //   child: AnimatedDefaultTextStyle(
+            //     duration: const Duration(milliseconds: 200),
+            //     style: TextStyle(
+            //       fontWeight: isSavedForLater ? FontWeight.bold : FontWeight.normal,
+            //     ),
+            //     child: Text('Save for Later'),
+            //   ),
+            // ),
 
           ],
         ),

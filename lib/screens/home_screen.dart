@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../Inside_Pages/Notification_page.dart';
 import '../widgets/best_deals_slider.dart';
 import '../widgets/category_slider.dart';
 import '../widgets/image_slider.dart';
@@ -29,31 +30,52 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // User's Location
-        const Padding(
+         Padding(
         padding: EdgeInsets.all(16.0),
 
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 26,),
-            Text('Location',
-              style: TextStyle(color: Colors.black54,
-                fontFamily: "NexaRegular",
-              ),),
-            SizedBox(height: 6,),
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.location_on,color: Colors.green,),
-                Text(
-                  'Pune City,India',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
+                SizedBox(height: 26,),
+                Text('Location',
+                  style: TextStyle(color: Colors.black54,
+                    fontFamily: "NexaRegular",
+                  ),),
+                SizedBox(height: 6,),
+                Row(
+                  children: [
+                    Icon(Icons.location_on,color: Colors.green,),
+                    Text(
+                      'Pune City,India',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
                 ),
+
               ],
             ),
+            IconButton(
+              onPressed: () {
+                // Your notification action
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => NotificationPage())
+                );
+              },
+              icon: Icon(
 
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              iconSize: 25,
+            ),
+
+            // Icon(Icons.ice_skating),
           ],
         ),
       ),
@@ -77,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Category',
                       style: TextStyle(
                         fontSize: 25,
@@ -93,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text(
+                      child:  Text(
                         'See All  ',
                         style: TextStyle(
                           fontSize: 16,
@@ -165,7 +187,7 @@ class HomeScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('  Popular Item',
+                Text('  Popular Item',
                   style: TextStyle(fontSize: 25,color: Colors.black,
                     fontFamily: "NexaRegular",
                   ),

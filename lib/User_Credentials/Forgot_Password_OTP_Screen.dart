@@ -2,6 +2,7 @@
 
 
 
+import 'package:ecom/User_Credentials/login_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -119,6 +120,9 @@ class _MyOtpState extends State<ForgotPassOTP> {
                   setState(() {
                     isVerifying = true;
                   });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>
+                          LoginScreen()));
 
                   // Navigator.pushNamed(context, "otp");
                 },
